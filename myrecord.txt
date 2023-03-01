@@ -1,5 +1,10 @@
 1） Spark下有生成docker的命令，可以查找docker-image-tool.sh
 ./bin/docker-image-tool.sh -f kubernetes/dockerfiles/spark/Dockerfile build
+运行完成后，会发布到本机的docker上，运行
+docker images
+可以看到，通过
+docker run -t -i spark:latest /bin/bash 
+可以进到容器里查看
 
 2） 在这里https://jimmysong.io/kubernetes-handbook/usecases/running-spark-with-kubernetes-native-scheduler.html有描述使用外部JAR的方式
 
