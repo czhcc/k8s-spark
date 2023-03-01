@@ -1,0 +1,5 @@
+1） Spark下有生成docker的命令，可以查找docker-image-tool.sh
+
+2） 在这里https://jimmysong.io/kubernetes-handbook/usecases/running-spark-with-kubernetes-native-scheduler.html有描述使用外部JAR的方式
+
+3）在这里https://feisky.gitbooks.io/kubernetes/content/machine-learning/spark.html有一个似乎讲述的还可以的安装方式
