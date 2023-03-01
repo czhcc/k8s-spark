@@ -6,6 +6,25 @@ docker images
 docker run -t -i spark:latest /bin/bash 
 可以进到容器里查看
 
+查看正在运行的容器
+docker ps -a
+
+停止容器
+docker stop <容器 ID>
+
+删除容器
+docker rm -f 1e560fca3906
+
+删除镜像
+docker rmi spark
+
+用
+docker search spark
+可以查看公开的spark镜像
+
+在dockerhub上有
+docker pull apache/spark
+
 2） 在这里https://jimmysong.io/kubernetes-handbook/usecases/running-spark-with-kubernetes-native-scheduler.html有描述使用外部JAR的方式
 
 3）在这里https://feisky.gitbooks.io/kubernetes/content/machine-learning/spark.html有一个似乎讲述的还可以的安装方式
