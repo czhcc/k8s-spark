@@ -28,3 +28,22 @@ docker pull apache/spark
 2） 在这里https://jimmysong.io/kubernetes-handbook/usecases/running-spark-with-kubernetes-native-scheduler.html有描述使用外部JAR的方式
 
 3）在这里https://feisky.gitbooks.io/kubernetes/content/machine-learning/spark.html有一个似乎讲述的还可以的安装方式
+
+4）根据Spark文档https://spark.apache.org/docs/latest/running-on-kubernetes.html
+通过
+kubectl cluster-info
+查看k8s端口信息
+或通过
+kubectl proxy
+启动代理
+再执行类似这样的命令
+./bin/spark-submit \
+    --master k8s://http://127.0.0.1:8001 \
+    --deploy-mode cluster \
+    --name spark-pi \
+    --class org.apache.spark.examples.SparkPi \
+    --conf spark.executor.instances=5 \
+    --conf spark.kubernetes.container.image=apache/spark \
+    local:///D:/opentools/apache/spark-3.3.0-bin-hadoop3/examples/jars/spark-examples_2.12-3.3.0.jar
+就可以直接使用原生Spark。
+注意spark.kubernetes.container.image参数，指定的是docker镜像名。
