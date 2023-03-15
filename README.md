@@ -1,6 +1,6 @@
 # k8s-spark
 
-以下使用的Spark版本为3.3.2。
+以下使用的Spark版本为3.3.2，使用的k8s为Windows下的DockerDesktop。
 
 ## 一、生成spark镜像文件
 一种方式是通过Spark源码中的命令 
