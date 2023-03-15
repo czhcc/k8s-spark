@@ -77,3 +77,23 @@ kubectl get namespaces
   命令中利用了PVC，将外部存储mount到了容器中的路径/opt/spark/work-dir上，这样在local中，就可以使用外部的JAR文件了。
 
 ## 六、读写外部HDFS文件
+  在Spark中执行任务时，一般会读写外部集群上的数据进行计算。这里以访问外部HDFS存储为例。
+  由于要对Spark运行时的Pod配置外部hosts映射，建议使用Pod模板方式提交Spark任务。
+  首先可以参考https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/，看一下Pod的hosts配置方式。
+  然后我们创建一个Pod模板文件，配置时hosts信息。文件内容可以参考spark-run.yaml
+  执行以下命令：
+  
+  spark-submit.cmd --master k8s://https://127.0.0.1:6443 
+  --deploy-mode cluster 
+  --name spark-pi 
+  --class org.apache.spark.examples.MyHdfs1 
+  --conf spark.executor.instances=1 
+  --conf spark.kubernetes.driver.podTemplateFile=file:///D:/opentools/docker/spark/spark-run.yaml 
+  --conf spark.kubernetes.executor.podTemplateFile=file:///D:/opentools/docker/spark/spark-run.yaml 
+  --conf spark.kubernetes.driver.container.image=apache/spark 
+  --conf spark.kubernetes.executor.container.image=apache/spark 
+  --conf spark.kubernetes.namespace=spark-czh 
+  local:///opt/spark/work-dir/jars/my_job.jar
+  由于我是在Windows环境上运行，所以那个模板文件路径是Windows的写法。其它还有要注意的是，namespace和image要在命令行中指定，写在pod文件中无效。
+  在Windows环境下命令中指定的yaml文件，要用file的方式。
+  如果使用带有依赖包的JAR，Pod模板文件中配置外部目录的readOnly要设置为false。
