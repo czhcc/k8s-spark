@@ -11,7 +11,7 @@ $ ./bin/docker-image-tool.sh -r <repo> -t my-tag push <br/>
 其中<repo>是Dockerfile文件，一般是在/kubernetes/dockerfiles/spark目录下。用这种方式的好处是，可以在镜像中加入自己特定的依赖或环境信息。 <br/>
 <br/>
 如果只是简单测试，也可以直接从网上下载镜像： <br/>
- ` docker pull apache/spark <br/> `
+ ` docker pull apache/spark ` <br/> 
 <br/>
 完成之后，可以通过命令 <br/>
 docker images <br/>
