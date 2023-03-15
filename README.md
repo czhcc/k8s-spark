@@ -99,7 +99,8 @@ $ ./bin/docker-image-tool.sh -r <repo> -t my-tag push <br/>
   --conf spark.kubernetes.driver.container.image=apache/spark 
   --conf spark.kubernetes.executor.container.image=apache/spark 
   --conf spark.kubernetes.namespace=spark-czh 
-  local:///opt/spark/work-dir/jars/my_job.jar ```
+  local:///opt/spark/work-dir/jars/my_job.jar 
+ ```
  <br/>
   由于我是在Windows环境上运行，所以那个模板文件路径是Windows的写法。其它还有要注意的是，namespace和image要在命令行中指定，写在pod文件中无效。 <br/>
   在Windows环境下命令中指定的yaml文件，要用file的方式。 <br/>
