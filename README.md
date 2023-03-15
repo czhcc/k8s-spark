@@ -87,7 +87,8 @@ Forbidden!Configured service account doesn't have access. Service account may ha
 ## 六、读写外部HDFS文件
   在Spark中执行任务时，一般会读写外部集群上的数据进行计算。这里以访问外部HDFS存储为例。 <br/>
   由于要对Spark运行时的Pod配置外部hosts映射，建议使用Pod模板方式提交Spark任务。 <br/>
-  首先可以参考https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/，看一下Pod的hosts配置方式。 <br/>
+  首先可以参考https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/，
+ 看一下Pod的hosts配置方式。 <br/>
   然后我们创建一个Pod模板文件，配置时hosts信息。文件内容可以参考spark-run.yaml <br/>
   执行以下命令：
 
