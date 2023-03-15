@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: spark-workdata-d0
+  namespace: spark-czh
+  labels:
+    type: local
+spec:
+  storageClassName: workdatapath
+  capacity: 
+    storage: 256Mi
+  persistentVolumeReclaimPolicy: Retain
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: /run/desktop/mnt/host/d/opentools/docker/spark/workdata
