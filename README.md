@@ -41,7 +41,7 @@ kubectl get namespaces
   kubectl create -f spark-ServiceAccount.yaml
   文件中的具体参数，可以参考k8s的文档。
 
-## 五、运行Spark例子
+## 五、运行Spark例子  
   可以先使用镜像包里自带的JAR文件，运行一个Spark的例子。
   spark-submit.cmd 
     --master k8s://https://127.0.0.1:6443 
