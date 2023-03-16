@@ -5,20 +5,20 @@ spec:
   hostAliases:
   - ip: "192.168.5.240"
     hostnames:
-    - "hostname240"
+    - "192-168-5-240.kydsj.com"
   - ip: "192.168.5.241"
     hostnames:
-    - "hostname241"
+    - "192-168-5-241.kydsj.com"
   - ip: "192.168.5.242"
     hostnames:
-    - "hostname242"
+    - "192-168-5-242.kydsj.com"
   - ip: "192.168.5.243"
     hostnames:
-    - "hostname243"
+    - "192-168-5-243.kydsj.com"
   containers:
   - args:
     volumeMounts:
-    - mountPath: /opt/spark/work-dir
+    - mountPath: /mnt
       name: workdata
       readOnly: false
   serviceAccountName: sparkuser1
