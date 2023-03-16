@@ -76,19 +76,18 @@ Forbidden!Configured service account doesn't have access. Service account may ha
   --conf spark.kubernetes.namespace=spark-czh 
   --conf spark.kubernetes.driver.pod.name=my-czh-spark1 
   --conf spark.kubernetes.driver.volumes.persistentVolumeClaim.workdata.options.claimName=spark-pvc-workdata0 
-  --conf spark.kubernetes.driver.volumes.persistentVolumeClaim.workdata.mount.path=/opt/spark/work-dir 
+  --conf spark.kubernetes.driver.volumes.persistentVolumeClaim.workdata.mount.path=/mnt 
   --conf spark.kubernetes.driver.volumes.persistentVolumeClaim.workdata.mount.readOnly=false 
   --conf spark.kubernetes.authenticate.driver.serviceAccountName=sparkuser1 
   --conf spark.kubernetes.executor.volumes.persistentVolumeClaim.workdata.options.claimName=spark-pvc-workdata0 
-  --conf spark.kubernetes.executor.volumes.persistentVolumeClaim.workdata.mount.path=/opt/spark/work-dir 
+  --conf spark.kubernetes.executor.volumes.persistentVolumeClaim.workdata.mount.path=/mnt 
   --conf spark.kubernetes.executor.volumes.persistentVolumeClaim.workdata.mount.readOnly=false 
   --conf spark.kubernetes.authenticate.executor.serviceAccountName=sparkuser1 
-  local:///opt/spark/work-dir/jars/spark-examples_2.12-3.3.0.jar
+  local:///mnt/jars/spark-examples_2.12-3.3.0.jar
  ```
 
-  命令中利用了PVC，将外部存储mount到了容器中的路径/opt/spark/work-dir上，这样在local中，就可以使用外部的JAR文件了。  <br/>
- 由于PV定义的是服务器本地路径，如果是在Linux环境上，可能会出现java.nio.file.AccessDeniedException异常，这里先把本地路径权限改为777。 <br/>
-<br/>
+  命令中利用了PVC，将外部存储mount到了容器中的路径/mnt上，这样在local中，就可以使用外部的JAR文件了。  <br/>
+ 
 ## 六、读写外部HDFS文件
   在Spark中执行任务时，一般会读写外部集群上的数据进行计算。这里以访问外部HDFS存储为例。 <br/>
   由于要对Spark运行时的Pod配置外部hosts映射，建议使用Pod模板方式提交Spark任务。 <br/>
@@ -108,7 +107,7 @@ Forbidden!Configured service account doesn't have access. Service account may ha
   --conf spark.kubernetes.driver.container.image=apache/spark 
   --conf spark.kubernetes.executor.container.image=apache/spark 
   --conf spark.kubernetes.namespace=spark-czh 
-  local:///opt/spark/work-dir/jars/my_job.jar 
+  local:///mnt/jars/my_job.jar 
  ``` 
  
   由于我是在Windows环境上运行，所以那个模板文件路径是Windows的写法。其它还有要注意的是，namespace和image要在命令行中指定，写在pod文件中无效。 <br/>
