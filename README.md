@@ -3,7 +3,7 @@
 以下使用的Spark版本为3.3.2，使用的k8s为Windows下的DockerDesktop。 <br/>
 如果是发布到远程k8s服务器，需要在kubectl命令中增加参数--kubeconfig=<path>指定一个config文件。 <br/>
  spark-submit提交到远程k8s服务器，缺省使用个人文件夹下.kube/config文件，如果想指定文件，可以使用环境变量： <br/>
- ` KUBECONFIG=<path>/trs_config `
+ ` KUBECONFIG=<path>/k8s_config `
 
 ## 一、生成spark镜像文件
 一种方式是通过Spark源码中的命令 
