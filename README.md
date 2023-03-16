@@ -1,7 +1,9 @@
 # k8s-spark
 
 以下使用的Spark版本为3.3.2，使用的k8s为Windows下的DockerDesktop。 <br/>
-如果是发布到远程k8s服务器，需要在kubectl命令中增加参数--kubeconfig=<path>指定一个config文件。
+如果是发布到远程k8s服务器，需要在kubectl命令中增加参数--kubeconfig=<path>指定一个config文件。 <br/>
+ spark-submit提交到远程k8s服务器，缺省使用个人文件夹下.kube/config文件，如果想指定文件，可以使用环境变量： <br/>
+ ` KUBECONFIG=<path>/trs_config `
 
 ## 一、生成spark镜像文件
 一种方式是通过Spark源码中的命令 
@@ -84,6 +86,7 @@ Forbidden!Configured service account doesn't have access. Service account may ha
  ```
 
   命令中利用了PVC，将外部存储mount到了容器中的路径/opt/spark/work-dir上，这样在local中，就可以使用外部的JAR文件了。  <br/>
+ 由于PV定义的是服务器本地路径，如果是在Linux环境上，可能会出现java.nio.file.AccessDeniedException异常，这里先把本地路径权限改为777。 <br/>
 <br/>
 ## 六、读写外部HDFS文件
   在Spark中执行任务时，一般会读写外部集群上的数据进行计算。这里以访问外部HDFS存储为例。 <br/>
