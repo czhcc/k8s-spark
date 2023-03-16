@@ -4,6 +4,7 @@
 如果是发布到远程k8s服务器，需要在kubectl命令中增加参数--kubeconfig=<path>指定一个config文件。 <br/>
  spark-submit提交到远程k8s服务器，缺省使用个人文件夹下.kube/config文件，如果想指定文件，可以使用环境变量： <br/>
  ` KUBECONFIG=<path>/k8s_config `
+ 对于下面例子中提交任务使用的https://127.0.0.1:6443 地址，如果是远程服务器，要改为k8s://https://<remote_hostname>:6443  <br/>
 
 ## 一、生成spark镜像文件
 一种方式是通过Spark源码中的命令 
