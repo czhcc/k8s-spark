@@ -1,6 +1,7 @@
 # k8s-spark
 
 以下使用的Spark版本为3.3.2，使用的k8s为Windows下的DockerDesktop。
+如果是发布到远程k8s服务器，需要在kubectl命令中增加参数--kubeconfig=<path>指定一个config文件。
 
 ## 一、生成spark镜像文件
 一种方式是通过Spark源码中的命令 
