@@ -22,7 +22,7 @@ $ ./bin/docker-image-tool.sh -r <repo> -t my-tag push
 列出安装好的镜像。 <br/>
 <br/>
 ## 二、创建namespace
-为了不与其它k8s资源冲突，我看先创建一个namespace。 <br/>
+为了不与其它k8s资源冲突，先创建一个namespace。 <br/>
 ` kubectl create -f ./spark-czh-namespace.yaml ` 
 <br/>
 创建完成后可以通过命令 <br/>
@@ -31,7 +31,7 @@ $ ./bin/docker-image-tool.sh -r <repo> -t my-tag push
 <br/>
 ## 三、创建PV和PVC，用来访问外部任务的JAR文件
 由于要运行的任务JAR会经常修改，一般是放在镜像文件的外部。在生产环境可能是在HDFS或S3文件系统上。 <br/>
-这里由于是在Win10的DockerDesktop下运行，就使用本南的目录。 <br/>
+这里由于是在Win10的DockerDesktop下运行，就使用本机的目录。 <br/>
 <br/>
 ` kubectl create -f spark-pv.yaml ` <br/>
 创建PV的具体参数，可以参考k8s的文档，留意文件中指定了前面创建的namespace名称。而里面的path路径，是DockerDesktop中的容器访问本机时使用的路径。 <br/>
